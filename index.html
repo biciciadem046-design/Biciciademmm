@@ -1,310 +1,653 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Adem'in Backrooms'u</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    <title>Adem | Bilişim Teknolojileri</title>
 
-body {
-    font-family: Arial, sans-serif;
-    background: #111;
-    color: white;
-}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
 
-/* GİRİŞ EKRANI */
-#welcome {
-    position: fixed;
-    inset: 0;
-    background: #d6c94f;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    z-index: 9999;
-    text-align: center;
-}
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fa;
+            color: #222;
+            line-height: 1.6;
+        }
 
-#welcome h1 {
-    color: #222;
-    font-size: 42px;
-    margin-bottom: 35px;
-    text-shadow: 2px 2px 5px #777;
-}
+        /* NAVBAR */
 
-.enter-button {
-    padding: 18px 40px;
-    font-size: 22px;
-    font-weight: bold;
-    border: none;
-    border-radius: 10px;
-    background: #ffe600;
-    color: #111;
-    cursor: pointer;
-    box-shadow: 0 0 25px #fff000;
-}
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: white;
+            border-bottom: 1px solid #e5e5e5;
+        }
 
-.enter-button:hover {
-    transform: scale(1.08);
-}
+        .navbar {
+            max-width: 1100px;
+            margin: auto;
+            padding: 18px 25px;
 
-/* TROLL EKRANI */
-#troll {
-    position: fixed;
-    inset: 0;
-    background: #050505;
-    color: #00ff00;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    z-index: 9998;
-    text-align: center;
-    font-family: monospace;
-}
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-#troll h2 {
-    font-size: 30px;
-    margin-bottom: 25px;
-}
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1d4ed8;
+        }
 
-#trollText {
-    font-size: 20px;
-    min-height: 30px;
-}
+        nav a {
+            text-decoration: none;
+            color: #333;
+            margin-left: 25px;
+            font-size: 15px;
+            transition: 0.3s;
+        }
 
-.loading {
-    width: 300px;
-    height: 20px;
-    border: 2px solid #00ff00;
-    margin-top: 25px;
-}
+        nav a:hover {
+            color: #1d4ed8;
+        }
 
-.loading-bar {
-    height: 100%;
-    width: 0%;
-    background: #00ff00;
-}
+        /* ANA SAYFA */
 
-/* ANA SİTE */
-header {
-    background: #222;
-    padding: 20px;
-    text-align: center;
-    position: sticky;
-    top: 0;
-}
+        .hero {
+            min-height: 620px;
 
-nav a {
-    color: white;
-    text-decoration: none;
-    margin: 0 15px;
-}
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
 
-section {
-    padding: 70px 10%;
-    min-height: 400px;
-}
+            background: linear-gradient(
+                135deg,
+                #eef4ff,
+                #ffffff
+            );
 
-.hero {
-    text-align: center;
-    background: linear-gradient(#333, #111);
-}
+            padding: 40px 20px;
+        }
 
-.hero h1 {
-    font-size: 45px;
-    margin-bottom: 15px;
-}
+        .hero-content {
+            max-width: 750px;
+        }
 
-.card {
-    background: #222;
-    padding: 25px;
-    margin: 20px 0;
-    border-radius: 12px;
-}
+        .hero h1 {
+            font-size: 52px;
+            margin-bottom: 15px;
+            color: #111827;
+        }
 
-footer {
-    text-align: center;
-    padding: 25px;
-    background: #000;
-}
+        .hero h1 span {
+            color: #1d4ed8;
+        }
 
-@media (max-width: 600px) {
-    #welcome h1 {
-        font-size: 30px;
-    }
+        .hero p {
+            font-size: 19px;
+            color: #666;
+            margin-bottom: 30px;
+        }
 
-    .enter-button {
-        font-size: 18px;
-        padding: 15px 30px;
-    }
+        .button {
+            display: inline-block;
+            padding: 13px 28px;
 
-    nav a {
-        display: block;
-        margin: 10px;
-    }
-}
-</style>
+            background: #1d4ed8;
+            color: white;
+
+            text-decoration: none;
+            border-radius: 7px;
+
+            transition: 0.3s;
+        }
+
+        .button:hover {
+            background: #163da8;
+            transform: translateY(-2px);
+        }
+
+        /* GENEL BÖLÜMLER */
+
+        section {
+            padding: 80px 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 34px;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #777;
+        }
+
+        /* HAKKIMDA */
+
+        .about {
+            background: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 27px;
+            margin-bottom: 15px;
+        }
+
+        .about-text p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .info-box {
+            background: #f5f7fa;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .info-box p {
+            margin-bottom: 10px;
+        }
+
+        .info-box strong {
+            color: #222;
+        }
+
+        /* HİZMETLER */
+
+        .services {
+            background: #f5f7fa;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+
+            border: 1px solid #e5e5e5;
+
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .card-icon {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #666;
+        }
+
+        /* PROJELER */
+
+        .projects {
+            background: white;
+        }
+
+        .project-card {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .project-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .project-card p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        /* İLETİŞİM */
+
+        .contact {
+            background: #f5f7fa;
+        }
+
+        .contact-box {
+            max-width: 700px;
+            margin: auto;
+
+            background: white;
+            padding: 40px;
+
+            border-radius: 10px;
+            border: 1px solid #e5e5e5;
+        }
+
+        .contact-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .contact-item:last-child {
+            border-bottom: none;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #111827;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        footer p {
+            color: #9ca3af;
+        }
+
+        /* TELEFON */
+
+        @media (max-width: 768px) {
+
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 0 8px;
+                font-size: 14px;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .hero p {
+                font-size: 17px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 60px 20px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<!-- GİRİŞ -->
-<div id="welcome">
-    <h1>Adem'in Backrooms'una<br>Hoş Geldiniz</h1>
+    <!-- NAVBAR -->
 
-    <button class="enter-button" onclick="startTroll()">
-        Sarı Butona Bas
-    </button>
-</div>
+    <header>
+        <div class="navbar">
 
-<!-- TROLL EKRANI -->
-<div id="troll">
-    <h2 id="trollTitle">SİSTEM TARANIYOR...</h2>
+            <div class="logo">
+                ADEM
+            </div>
 
-    <div id="trollText">
-        Lütfen bekleyin...
-    </div>
+            <nav>
+                <a href="#anasayfa">Ana Sayfa</a>
+                <a href="#hakkimda">Hakkımda</a>
+                <a href="#hizmetler">Hizmetler</a>
+                <a href="#projeler">Projeler</a>
+                <a href="#iletisim">İletişim</a>
+            </nav>
 
-    <div class="loading">
-        <div class="loading-bar" id="bar"></div>
-    </div>
-</div>
+        </div>
+    </header>
 
-<!-- ANA SİTE -->
-<header>
-    <h2>Adem'in Backrooms'u</h2>
 
-    <nav>
-        <a href="#anasayfa">Ana Sayfa</a>
-        <a href="#ozgecmis">Özgeçmiş</a>
-        <a href="#projeler">Projeler</a>
-        <a href="#iletisim">İletişim</a>
-    </nav>
-</header>
+    <!-- ANA SAYFA -->
 
-<section id="anasayfa" class="hero">
-    <h1>Merhaba, ben Adem 👋</h1>
-    <p>Bilişim Teknolojileri</p>
-    <p>Backrooms'a hoş geldin...</p>
-</section>
+    <section class="hero" id="anasayfa">
 
-<section id="ozgecmis">
-    <h2>Özgeçmiş</h2>
+        <div class="hero-content">
 
-    <div class="card">
-        <h3>Hakkımda</h3>
+            <h1>
+                Merhaba, ben <span>Adem</span>
+            </h1>
+
+            <p>
+                Bilişim Teknolojileri alanında kendimi geliştiren,
+                teknoloji ve web dünyasına ilgi duyan biriyim.
+            </p>
+
+            <a href="#hakkimda" class="button">
+                Hakkımda
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- HAKKIMDA -->
+
+    <section class="about" id="hakkimda">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Hakkımda</h2>
+
+                <p>
+                    Kısaca kendimden bahsedeyim.
+                </p>
+
+            </div>
+
+
+            <div class="about-content">
+
+                <div class="about-text">
+
+                    <h3>Bilişim Teknolojileri</h3>
+
+                    <p>
+                        Teknoloji, bilgisayar sistemleri ve web
+                        geliştirme alanlarına ilgi duyuyorum.
+                    </p>
+
+                    <p>
+                        Kendimi sürekli geliştirmeye ve yeni
+                        teknolojiler öğrenmeye devam ediyorum.
+                    </p>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <p>
+                        <strong>Ad:</strong> Adem
+                    </p>
+
+                    <p>
+                        <strong>Alan:</strong> Bilişim Teknolojileri
+                    </p>
+
+                    <p>
+                        <strong>Uzmanlık:</strong> Web ve Bilgisayar Teknolojileri
+                    </p>
+
+                    <p>
+                        <strong>Konum:</strong> Türkiye
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- HİZMETLER -->
+
+    <section class="services" id="hizmetler">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Hizmetler</h2>
+
+                <p>
+                    İlgi duyduğum ve üzerinde çalıştığım alanlar.
+                </p>
+
+            </div>
+
+
+            <div class="cards">
+
+                <div class="card">
+
+                    <div class="card-icon">
+                        💻
+                    </div>
+
+                    <h3>Web Tasarım</h3>
+
+                    <p>
+                        Modern ve kullanıcı dostu web siteleri
+                        oluşturma.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-icon">
+                        🛠️
+                    </div>
+
+                    <h3>Teknik Destek</h3>
+
+                    <p>
+                        Bilgisayar ve teknoloji alanında
+                        teknik destek çalışmaları.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-icon">
+                        🗄️
+                    </div>
+
+                    <h3>Veritabanı</h3>
+
+                    <p>
+                        Veritabanı sistemleri ve temel
+                        veritabanı çalışmaları.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PROJELER -->
+
+    <section class="projects" id="projeler">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Projeler</h2>
+
+                <p>
+                    Üzerinde çalıştığım projeler.
+                </p>
+
+            </div>
+
+
+            <div class="cards">
+
+                <div class="project-card">
+
+                    <h3>Kişisel Web Sitesi</h3>
+
+                    <p>
+                        HTML ve CSS kullanılarak hazırlanmış
+                        modern kişisel web sitesi.
+                    </p>
+
+                    <a href="#anasayfa" class="button">
+                        İncele
+                    </a>
+
+                </div>
+
+
+                <div class="project-card">
+
+                    <h3>Veritabanı Projesi</h3>
+
+                    <p>
+                        Veritabanı yönetimi ve veri düzenleme
+                        üzerine çalışmalar.
+                    </p>
+
+                    <a href="#projeler" class="button">
+                        İncele
+                    </a>
+
+                </div>
+
+
+                <div class="project-card">
+
+                    <h3>Teknik Destek</h3>
+
+                    <p>
+                        Bilgisayar kurulumu, yazılım ve
+                        teknik destek çalışmaları.
+                    </p>
+
+                    <a href="#iletisim" class="button">
+                        İletişim
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- İLETİŞİM -->
+
+    <section class="contact" id="iletisim">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>İletişim</h2>
+
+                <p>
+                    Benimle iletişime geçebilirsiniz.
+                </p>
+
+            </div>
+
+
+            <div class="contact-box">
+
+                <div class="contact-item">
+
+                    📧
+                    <strong>E-posta</strong>
+
+                    <br>
+
+                    ornek@mail.com
+
+                </div>
+
+
+                <div class="contact-item">
+
+                    📱
+                    <strong>Telefon</strong>
+
+                    <br>
+
+                    05XX XXX XX XX
+
+                </div>
+
+
+                <div class="contact-item">
+
+                    📍
+                    <strong>Konum</strong>
+
+                    <br>
+
+                    Türkiye
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <h3>Adem</h3>
+
         <p>
-            Bilişim Teknolojileri alanında kendimi geliştirmeye
-            devam ediyorum.
+            Bilişim Teknolojileri
         </p>
-    </div>
 
-    <div class="card">
-        <h3>Eğitim</h3>
-        <p>Bilişim Teknolojileri / Veritabanı</p>
-    </div>
+        <p>
+            © 2026 Tüm hakları saklıdır.
+        </p>
 
-    <div class="card">
-        <h3>Yetenekler</h3>
-        <p>HTML • CSS • JavaScript • Veritabanı</p>
-    </div>
-</section>
-
-<section id="projeler">
-    <h2>Projeler</h2>
-
-    <div class="card">
-        <h3>Kişisel Web Sitesi</h3>
-        <p>Bu site 😎</p>
-    </div>
-
-    <div class="card">
-        <h3>Veritabanı Projesi</h3>
-        <p>Veritabanı çalışmaları.</p>
-    </div>
-
-    <div class="card">
-        <h3>Teknik Destek</h3>
-        <p>Bilgisayar ve teknoloji üzerine çalışmalar.</p>
-    </div>
-</section>
-
-<section id="iletisim">
-    <h2>İletişim</h2>
-
-    <div class="card">
-        <p>📧 E-posta: ornek@mail.com</p>
-        <p>📱 Telefon: 05XX XXX XX XX</p>
-        <p>📍 Konum: Türkiye</p>
-    </div>
-</section>
-
-<footer>
-    © 2026 Adem'in Backrooms'u
-</footer>
-
-<script>
-
-function startTroll() {
-
-    document.getElementById("welcome").style.display = "none";
-    document.getElementById("troll").style.display = "flex";
-
-    let bar = document.getElementById("bar");
-    let text = document.getElementById("trollText");
-    let title = document.getElementById("trollTitle");
-
-    let progress = 0;
-
-    let messages = [
-        "Sistem taranıyor...",
-        "Backrooms bağlantısı kuruluyor...",
-        "Kullanıcı tespit edildi...",
-        "Telefonunuz kontrol ediliyor...",
-        "Dosyalar inceleniyor...",
-        "Şifreler kontrol ediliyor...",
-        "Son aşama..."
-    ];
-
-    let messageIndex = 0;
-
-    let interval = setInterval(function() {
-
-        progress += 5;
-
-        bar.style.width = progress + "%";
-
-        if (progress % 15 === 0 && messageIndex < messages.length) {
-            text.innerText = messages[messageIndex];
-            messageIndex++;
-        }
-
-        if (progress >= 100) {
-
-            clearInterval(interval);
-
-            title.innerText = "İŞLEM TAMAMLANDI";
-            text.innerText =
-                "Backrooms bağlantısı başarıyla kuruldu.";
-
-            bar.style.display = "none";
-
-            setTimeout(function() {
-                document.getElementById("troll").style.display = "none";
-            }, 3000);
-        }
-
-    }, 180);
-}
-
-</script>
+    </footer>
 
 </body>
 </html>
