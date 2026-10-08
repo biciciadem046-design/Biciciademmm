@@ -18,6 +18,7 @@ body {
     color: white;
 }
 
+/* GİRİŞ EKRANI */
 #welcome {
     position: fixed;
     inset: 0;
@@ -53,6 +54,7 @@ body {
     transform: scale(1.08);
 }
 
+/* TROLL EKRANI */
 #troll {
     position: fixed;
     inset: 0;
@@ -90,6 +92,7 @@ body {
     background: #00ff00;
 }
 
+/* ANA SİTE */
 header {
     background: #222;
     padding: 20px;
@@ -152,6 +155,7 @@ footer {
 
 <body>
 
+<!-- GİRİŞ -->
 <div id="welcome">
     <h1>Adem'in Backrooms'una<br>Hoş Geldiniz</h1>
 
@@ -160,6 +164,7 @@ footer {
     </button>
 </div>
 
+<!-- TROLL EKRANI -->
 <div id="troll">
     <h2 id="trollTitle">SİSTEM TARANIYOR...</h2>
 
@@ -172,6 +177,7 @@ footer {
     </div>
 </div>
 
+<!-- ANA SİTE -->
 <header>
     <h2>Adem'in Backrooms'u</h2>
 
@@ -284,9 +290,9 @@ function startTroll() {
 
             clearInterval(interval);
 
-            title.innerText = "😂 YAKALANDIN!";
+            title.innerText = "İŞLEM TAMAMLANDI";
             text.innerText =
-                "Şaka yaptık! Telefonunuzda hiçbir şey yapılmadı. 😎";
+                "Backrooms bağlantısı başarıyla kuruldu.";
 
             bar.style.display = "none";
 
